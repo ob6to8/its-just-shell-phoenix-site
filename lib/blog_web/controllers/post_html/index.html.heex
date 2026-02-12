@@ -1,0 +1,24 @@
+<div class="space-y-8">
+  <div class="flex items-center justify-between">
+    <h1 class="text-3xl font-bold">Posts</h1>
+    <.link href={~p"/posts/new"} class="rounded bg-zinc-900 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-700">
+      New Post
+    </.link>
+  </div>
+
+  <%= if Enum.empty?(@posts) do %>
+    <p class="text-zinc-500">No posts yet.</p>
+  <% else %>
+    <div class="space-y-6">
+      <%= for post <- @posts do %>
+        <article class="border-b border-zinc-100 pb-6">
+          <.link href={~p"/posts/#{post}"} class="group">
+            <h2 class="text-xl font-semibold group-hover:text-zinc-600"><%= post.title %></h2>
+          </.link>
+          <p class="mt-1 text-sm text-zinc-500"><%= format_date(post.published_at) %></p>
+          <p class="mt-2 text-zinc-700 line-clamp-2"><%= String.slice(post.body, 0, 200) %></p>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
+</div>

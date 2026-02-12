@@ -1,0 +1,7 @@
+<div class="space-y-6">
+  <div>
+    <.link href={~p"/posts/#{@post}"} class="text-sm text-zinc-500 hover:text-zinc-700">&larr; Back to post</.link>
+  </div>
+  <h1 class="text-3xl font-bold">Edit Post</h1>
+  <.post_form changeset={@changeset} action={~p"/posts/#{@post}"} />
+</div>

@@ -1,0 +1,16 @@
+# Ignore .build, deps, and node artifacts
+_build/
+deps/
+node_modules/
+
+# Ignore priv/static since it gets generated
+priv/static/assets/
+
+# Ignore development/test artifacts
+.elixir_ls/
+.git/
+.env
+*.ez
+
+# Ignore test files
+test/

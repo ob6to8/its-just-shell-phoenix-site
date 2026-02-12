@@ -1,0 +1,33 @@
+# fly.toml app configuration file generated for your blog
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+# Replace "your-blog-app-name" with your actual Fly app name.
+# Run `fly launch` to set this up automatically.
+
+app = "your-blog-app-name"
+primary_region = "iad"
+kill_signal = "SIGTERM"
+kill_timeout = 5
+
+[build]
+
+[deploy]
+  release_command = "/app/bin/migrate"
+
+[env]
+  PHX_HOST = "your-blog-app-name.fly.dev"
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1
