@@ -10,8 +10,8 @@ defmodule BlogWeb.PostControllerTest do
 
   describe "show post" do
     test "shows a post by slug", %{conn: conn} do
-      conn = get(conn, ~p"/posts/hello-world")
-      assert html_response(conn, 200) =~ "Hello World"
+      conn = get(conn, ~p"/posts/something-big-is-here-humans-as-constancy-anchors")
+      assert html_response(conn, 200) =~ "Something Big is Here"
     end
   end
 end
