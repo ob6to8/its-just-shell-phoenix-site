@@ -44,4 +44,4 @@ If you are being flanked on your team by people who are bragging to their impres
 
 AI is leverage. Nothing more. For it to work, it needs to be leveraged.
 
-You must aspire, fail, succeed, and grow. AI will be your greatest ally or the yoke that crushes you. And it may prove to be the greatest adventure you've ever undertaken.
+You must aspire, fail, succeed, and grow. AI will be your greatest ally or the yoke that crushes you.
