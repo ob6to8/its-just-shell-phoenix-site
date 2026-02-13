@@ -3,9 +3,7 @@ defmodule BlogWeb.PostHTML do
 
   embed_templates "post_html/*"
 
-  def format_date(nil), do: "Draft"
-
-  def format_date(datetime) do
-    Calendar.strftime(datetime, "%B %d, %Y")
+  def format_date(%Date{} = date) do
+    Calendar.strftime(date, "%B %d, %Y")
   end
 end

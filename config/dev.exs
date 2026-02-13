@@ -1,15 +1,5 @@
 import Config
 
-# Configure your database
-config :blog, Blog.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "blog_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
-
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -57,6 +47,7 @@ config :blog, BlogWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/posts/.*.md$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/blog_web/(controllers|live|components)/.*(ex|heex)$"
     ]

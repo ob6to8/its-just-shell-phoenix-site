@@ -18,7 +18,8 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    resources "/posts", PostController
+    get "/posts", PostController, :index
+    get "/posts/:id", PostController, :show
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

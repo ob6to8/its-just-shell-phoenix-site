@@ -12,9 +12,6 @@ kill_timeout = 5
 
 [build]
 
-[deploy]
-  release_command = "/app/bin/migrate"
-
 [env]
   PHX_HOST = "your-blog-app-name.fly.dev"
   PORT = "8080"
