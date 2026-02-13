@@ -1,14 +1,14 @@
 <article class="space-y-6">
   <div>
-    <.link href={~p"/posts"} class="text-sm text-zinc-500 hover:text-zinc-700">&larr; Back to posts</.link>
+    <.link href={~p"/posts"} class="text-sm font-mono text-zinc-500 hover:text-terminal-green transition-colors">&larr; back to posts</.link>
   </div>
 
   <header>
-    <h1 class="text-3xl font-bold"><%= @post.title %></h1>
-    <p class="mt-2 text-sm text-zinc-500"><%= format_date(@post.date) %></p>
+    <h1 class="text-3xl font-bold font-mono text-zinc-100"><%= @post.title %></h1>
+    <p class="mt-2 text-sm font-mono text-zinc-600"><%= format_date(@post.date) %></p>
   </header>
 
-  <div class="prose max-w-none">
+  <div class="prose prose-invert prose-terminal max-w-none">
     <%= raw(@post.body) %>
   </div>
 </article>

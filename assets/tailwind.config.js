@@ -13,9 +13,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mono: ['"JetBrains Mono"', '"Fira Code"', '"Cascadia Code"', 'monospace'],
+        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+      },
       colors: {
-        brand: "#FD4F00",
-      }
+        brand: "#22c55e",
+        terminal: {
+          green: "#4ade80",
+          dim: "#22c55e",
+        },
+      },
     },
   },
   plugins: [

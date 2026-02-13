@@ -1,30 +1,33 @@
-# fly.toml app configuration file generated for your blog
+# fly.toml app configuration file generated for its-just-shell-phoenix-site on 2026-02-12T17:12:21-08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
-# Replace "your-blog-app-name" with your actual Fly app name.
-# Run `fly launch` to set this up automatically.
 
-app = "your-blog-app-name"
-primary_region = "iad"
-kill_signal = "SIGTERM"
-kill_timeout = 5
+app = 'its-just-shell-phoenix-site'
+primary_region = 'sjc'
+kill_signal = 'SIGTERM'
 
 [build]
 
 [env]
-  PHX_HOST = "your-blog-app-name.fly.dev"
-  PORT = "8080"
+  PHX_HOST = 'itsjustshell.com'
+  PORT = '8080'
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "stop"
+  auto_stop_machines = 'suspend'
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
+  processes = ['app']
+
+  [http_service.concurrency]
+    type = 'connections'
+    hard_limit = 1000
+    soft_limit = 1000
 
 [[vm]]
-  memory = "512mb"
-  cpu_kind = "shared"
+  memory = '1gb'
+  cpu_kind = 'shared'
   cpus = 1
+  memory_mb = 1024

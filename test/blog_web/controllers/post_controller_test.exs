@@ -4,7 +4,7 @@ defmodule BlogWeb.PostControllerTest do
   describe "index" do
     test "lists posts", %{conn: conn} do
       conn = get(conn, ~p"/posts")
-      assert html_response(conn, 200) =~ "Posts"
+      assert html_response(conn, 200) =~ "posts"
     end
   end
 

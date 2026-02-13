@@ -1,16 +1,13 @@
 <header class="px-4 sm:px-6 lg:px-8">
-  <div class="flex items-center justify-between border-b border-zinc-100 py-3 text-sm">
+  <div class="flex items-center justify-between border-b border-zinc-800 py-3 text-sm">
     <div class="flex items-center gap-4">
-      <a href="/" class="text-lg font-bold text-zinc-900 hover:text-zinc-700">
-        Blog
+      <a href="/" class="font-mono text-lg font-bold text-terminal-green hover:text-green-300">
+        <span class="text-zinc-500">$</span> its-just-shell
       </a>
     </div>
-    <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <.link href={~p"/posts"} class="hover:text-zinc-700">
-        Posts
-      </.link>
-      <.link href={~p"/posts/new"} class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80">
-        Write
+    <div class="flex items-center gap-4 font-mono text-sm leading-6 text-zinc-400">
+      <.link href={~p"/posts"} class="hover:text-terminal-green transition-colors">
+        posts
       </.link>
     </div>
   </div>
