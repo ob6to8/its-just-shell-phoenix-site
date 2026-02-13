@@ -1,6 +1,6 @@
 %{
   title: "Something Big is Here: Humans as Constancy Anchors",
-  description: "A commentary on Matt Shumer's viral article about AI - and why your role as a human anchor matters more than speed.",
+  description: "A commentary on Matt Shumer's viral article about the coming wave of AI capability. Capability without constancy is commodity.",
   tags: ["ai", "agents", "essay"]
 }
 ---
