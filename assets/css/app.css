@@ -6,7 +6,7 @@
 .prose-terminal {
   --tw-prose-body: #d4d4d8;
   --tw-prose-headings: #e4e4e7;
-  --tw-prose-links: #4ade80;
+  --tw-prose-links: #a78bfa;
   --tw-prose-bold: #e4e4e7;
   --tw-prose-counters: #a1a1aa;
   --tw-prose-bullets: #71717a;
@@ -22,13 +22,13 @@
 
 .prose-terminal a {
   text-decoration: underline;
-  text-decoration-color: rgba(74, 222, 128, 0.3);
+  text-decoration-color: rgba(167, 139, 250, 0.3);
   text-underline-offset: 2px;
 }
 
 .prose-terminal a:hover {
-  color: #86efac;
-  text-decoration-color: #86efac;
+  color: #c4b5fd;
+  text-decoration-color: #c4b5fd;
 }
 
 .prose-terminal code:not(pre code) {
