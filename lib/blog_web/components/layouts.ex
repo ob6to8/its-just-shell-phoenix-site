@@ -11,4 +11,8 @@ defmodule BlogWeb.Layouts do
   use BlogWeb, :html
 
   embed_templates "layouts/*"
+
+  def theme_style(theme) do
+    "--bg:#{theme.bg};--text:#{theme.text};--accent:#{theme.accent};--accent-hover:#{theme.accent_hover};--gradient-from:#{theme.gradient_from};--gradient-to:#{theme.gradient_to};--border:#{theme.border};--surface:#{theme.surface};--text-secondary:#{theme.text_secondary};--prose-bg:#{theme.prose_bg};--code-color:#{theme.code_color}"
+  end
 end

@@ -1,6 +1,6 @@
 # Blog
 
-A Phoenix blog powered by [NimblePublisher](https://github.com/dashbitco/nimble_publisher). Posts are markdown files compiled into the app at build time — no database required.
+A multi-tenant Phoenix blog powered by [NimblePublisher](https://github.com/dashbitco/nimble_publisher). Three sites — **itsjustshell.com**, **itsjustbeam.com**, and **itsjustsound.com** — are served from a single codebase and deployment. Each site has its own posts, color theme, and logo. Posts are markdown files compiled into the app at build time — no database required.
 
 ## Local development
 
@@ -15,15 +15,25 @@ Or run inside IEx for interactive debugging:
 iex -S mix phx.server
 ```
 
+In dev, all sites share `localhost:4000`. Switch sites with a query param:
+
+- `localhost:4000` — its-just-shell (default)
+- `localhost:4000?site=its-just-beam` — its-just-beam
+- `localhost:4000?site=its-just-sound` — its-just-sound
+
+The `?site=` param is saved in the session so you can navigate without repeating it. In production, site detection is automatic via hostname.
+
 ## Writing a post
 
-Add a markdown file to `priv/posts/` following this naming convention:
+Add a markdown file to the appropriate site directory following this naming convention:
 
 ```
-priv/posts/<YEAR>/<MM>-<DD>-<slug>.md
+priv/posts/<site-slug>/<YEAR>/<MM>-<DD>-<slug>.md
 ```
 
-For example: `priv/posts/2026/02-12-hello-world.md`
+For example: `priv/posts/its-just-shell/2026/02-12-hello-world.md`
+
+Available site slugs: `its-just-shell`, `its-just-beam`, `its-just-sound`.
 
 Each file needs frontmatter at the top (valid Elixir map syntax), separated from the body by `---`:
 

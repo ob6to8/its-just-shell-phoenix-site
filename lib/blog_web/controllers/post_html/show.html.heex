@@ -1,11 +1,11 @@
 <article class="space-y-6">
   <div>
-    <.link href={~p"/posts"} class="text-sm font-mono text-zinc-500 hover:text-blue-400 transition-colors">&larr; back to posts</.link>
+    <.link href={~p"/posts"} class="text-sm font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&larr; back to posts</.link>
   </div>
 
   <header>
-    <h1 class="text-3xl font-bold font-mono text-zinc-100"><%= @post.title %></h1>
-    <p class="mt-2 text-sm font-mono text-zinc-600"><%= format_date(@post.date) %></p>
+    <h1 class="text-3xl font-bold font-mono text-[var(--text)]"><%= @post.title %></h1>
+    <p class="mt-2 text-sm font-mono text-[var(--text-secondary)]"><%= format_date(@post.date) %></p>
   </header>
 
   <div class="prose prose-invert prose-terminal max-w-none">

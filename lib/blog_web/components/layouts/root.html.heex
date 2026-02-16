@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title suffix=" - its just shell">
+    <.live_title suffix={@current_site.title_suffix}>
       <%= assigns[:page_title] || "devlog" %>
     </.live_title>
-    <link rel="icon" type="image/png" href={~p"/images/logo.png"} />
+    <link rel="icon" type="image/png" href={@current_site.logo_path} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -15,7 +15,10 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body class="bg-[#282a36] text-zinc-300 antialiased font-sans">
+  <body
+    class="bg-[var(--bg)] text-[var(--text)] antialiased font-sans"
+    style={theme_style(@current_site.theme)}
+  >
     <%= @inner_content %>
   </body>
 </html>

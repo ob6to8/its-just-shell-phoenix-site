@@ -9,10 +9,12 @@ defmodule Blog.Posts do
 
   @posts Enum.sort_by(@posts, & &1.date, {:desc, Date})
 
-  def list_posts, do: @posts
+  def list_posts(site_slug) do
+    Enum.filter(@posts, &(&1.site == site_slug))
+  end
 
-  def get_post!(id) do
-    Enum.find(@posts, &(&1.id == id)) ||
+  def get_post!(site_slug, id) do
+    Enum.find(@posts, &(&1.site == site_slug and &1.id == id)) ||
       raise Blog.NotFoundError, "post with id=#{id} not found"
   end
 end

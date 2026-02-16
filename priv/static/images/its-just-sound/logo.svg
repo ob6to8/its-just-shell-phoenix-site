@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#1e1e2e"/>
+  <!-- Waveform icon -->
+  <path d="M12 32 Q16 32 18 24 Q20 16 22 32 Q24 48 26 32 Q28 16 30 12 Q32 8 34 32 Q36 56 38 32 Q40 8 42 32 Q44 48 46 32 Q48 24 50 28 Q52 32 52 32" stroke="#a855f7" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Glow effect -->
+  <path d="M12 32 Q16 32 18 24 Q20 16 22 32 Q24 48 26 32 Q28 16 30 12 Q32 8 34 32 Q36 56 38 32 Q40 8 42 32 Q44 48 46 32 Q48 24 50 28 Q52 32 52 32" stroke="#ec4899" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.5"/>
+</svg>
