@@ -4,18 +4,18 @@
   <%= if Enum.empty?(@feed_items) do %>
     <p class="text-[var(--text-secondary)]">No feed items yet.</p>
   <% else %>
-    <div class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <%= for item <- @feed_items do %>
-        <article class="border-b border-[var(--border)] pb-6">
-          <h2 class="font-mono text-xl font-semibold">
+        <article class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 flex flex-col gap-3">
+          <h2 class="font-mono text-base font-semibold leading-snug">
             <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-[var(--text)] hover:text-[var(--accent)] transition-colors">
-              <%= item.title %> <span class="text-sm text-[var(--text-secondary)]">&#8599;</span>
+              <%= item.title %> <span class="text-xs text-[var(--text-secondary)]">&#8599;</span>
             </a>
           </h2>
-          <p class="mt-1 text-sm font-mono text-[var(--text-secondary)]">
-            <%= item.source %> &middot; <%= format_date(item.date) %>
+          <p class="text-xs font-mono text-[var(--text-secondary)]">
+            <%= item.source %> &middot; <%= item.published %>
           </p>
-          <div class="mt-2 text-[var(--text-secondary)] prose prose-invert prose-terminal prose-sm max-w-none">
+          <div class="text-sm text-[var(--text-secondary)] prose prose-invert prose-terminal prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-4 [&_ul]:space-y-1 [&_li]:text-sm">
             <%= raw(item.body) %>
           </div>
         </article>

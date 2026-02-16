@@ -1,6 +1,6 @@
 defmodule Blog.Feed.FeedItem do
-  @enforce_keys [:id, :site, :title, :url, :source, :body, :date, :tags]
-  defstruct [:id, :site, :title, :url, :source, :body, :date, :tags]
+  @enforce_keys [:id, :site, :title, :url, :source, :body, :date, :published, :tags]
+  defstruct [:id, :site, :title, :url, :source, :body, :date, :published, :tags]
 
   def build(filename, attrs, body) do
     parts = filename |> Path.rootname() |> Path.split()
