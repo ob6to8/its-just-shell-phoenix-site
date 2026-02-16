@@ -6,6 +6,6 @@
   tags: ["erlang", "otp", "fault-tolerance"]
 }
 ---
-- Definitive explanation of what "let it crash" actually means — not recklessness, structured recovery
-- Supervision trees don't prevent failure; they make failure a first-class architectural primitive
-- If you only read one thing about why OTP works, make it this
+- Explains how OTP supervision trees encode recovery strategies as explicit architectural decisions, not afterthought error handling
+- Distinguishes between errors (expected, handle inline) and failures (unexpected, let the process crash and restart clean)
+- "Let it crash" requires pre-planned supervision hierarchies — the crash is intentional, not accidental

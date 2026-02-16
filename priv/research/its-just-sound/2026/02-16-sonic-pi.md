@@ -6,6 +6,6 @@
   tags: ["live-coding", "synthesis", "education"]
 }
 ---
-- Clearest proof that code and music share a common substrate: loops, timing, and composition
-- Built on SuperCollider, runs on a Raspberry Pi — collapses the distance between writing a program and hearing it
-- Watch a room full of kids write their first beat in Ruby and tell me sonification is niche
+- Live-coding environment that treats music as a programming problem: sequences, loops, concurrency, and timing
+- Built on SuperCollider but exposes a Ruby DSL that makes audio synthesis accessible without a signal processing background
+- Used in education to teach programming through immediate auditory feedback rather than visual output

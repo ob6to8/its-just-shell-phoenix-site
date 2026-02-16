@@ -6,6 +6,6 @@
   tags: ["agents", "architecture"]
 }
 ---
-- Validates the "simple tool loops beat frameworks" thesis from inside Anthropic's own engineering org
-- Draws a clear line: workflows beat agents until they don't, and winning agents are just structured workflows
-- The model belongs in the driver's seat, not buried under orchestration layers
+- Argues the most effective agent architectures are augmented LLMs with simple tool loops, not multi-agent frameworks
+- Distinguishes "workflows" (predetermined tool orchestration) from "agents" (model-directed tool use) — both reduce to tool loops at different autonomy levels
+- Recommends starting with the simplest implementation and adding complexity only when measurably needed
