@@ -3,7 +3,7 @@
   url: "https://ferd.ca/the-zen-of-erlang.html",
   source: "ferd.ca",
   published: "February 2016",
-  tags: ["erlang", "otp", "fault-tolerance"]
+  type: "post"
 }
 ---
 - Explains how OTP supervision trees encode recovery strategies as explicit architectural decisions, not afterthought error handling

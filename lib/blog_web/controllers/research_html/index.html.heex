@@ -1,6 +1,31 @@
 <div class="space-y-8">
   <div class="max-w-2xl mx-auto">
     <h1 class="text-3xl font-bold font-mono text-[var(--text)]">research</h1>
+
+    <div class="flex flex-wrap gap-2 mt-4">
+      <a
+        href={~p"/research"}
+        class={"px-3 py-1 rounded-full text-xs font-mono border transition-colors " <>
+          if(@current_type == nil,
+            do: "bg-[var(--accent)] text-[var(--bg)] border-[var(--accent)]",
+            else: "text-[var(--text-secondary)] border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          )}
+      >
+        all
+      </a>
+      <%= for type <- @types do %>
+        <a
+          href={~p"/research?type=#{type}"}
+          class={"px-3 py-1 rounded-full text-xs font-mono border transition-colors " <>
+            if(@current_type == type,
+              do: "bg-[var(--accent)] text-[var(--bg)] border-[var(--accent)]",
+              else: "text-[var(--text-secondary)] border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            )}
+        >
+          <%= type %>
+        </a>
+      <% end %>
+    </div>
   </div>
 
   <%= if Enum.empty?(@research_items) do %>
@@ -14,6 +39,9 @@
               <%= item.title %> <span class="text-xs text-[var(--text-secondary)]">&#8599;</span>
             </a>
           </h2>
+          <span class="inline-block self-start px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider text-[var(--accent)] border border-[var(--accent)]/30 bg-[var(--accent)]/10">
+            <%= item.type %>
+          </span>
           <p class="text-xs font-mono text-[var(--text-secondary)]">
             <%= item.source %> &middot; <%= item.published %>
           </p>

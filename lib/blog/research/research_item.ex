@@ -1,6 +1,6 @@
 defmodule Blog.Research.ResearchItem do
-  @enforce_keys [:id, :site, :title, :url, :source, :body, :date, :published, :tags]
-  defstruct [:id, :site, :title, :url, :source, :body, :date, :published, :tags]
+  @enforce_keys [:id, :site, :title, :url, :source, :body, :date, :published, :type]
+  defstruct [:id, :site, :title, :url, :source, :body, :date, :published, :type]
 
   def build(filename, attrs, body) do
     parts = filename |> Path.rootname() |> Path.split()

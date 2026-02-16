@@ -3,7 +3,7 @@
   url: "https://sonic-pi.net/",
   source: "sonic-pi.net",
   published: "2012",
-  tags: ["live-coding", "synthesis", "education"]
+  type: "project"
 }
 ---
 - Live-coding environment that treats music as a programming problem: sequences, loops, concurrency, and timing

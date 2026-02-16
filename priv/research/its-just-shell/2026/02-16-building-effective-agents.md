@@ -3,7 +3,7 @@
   url: "https://www.anthropic.com/engineering/building-effective-agents",
   source: "Anthropic",
   published: "December 2024",
-  tags: ["agents", "architecture"]
+  type: "post"
 }
 ---
 - Argues the most effective agent architectures are augmented LLMs with simple tool loops, not multi-agent frameworks

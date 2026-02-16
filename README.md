@@ -55,6 +55,30 @@ IO.puts("Hello!")
 
 The date and slug are parsed from the filename — no need to repeat them in the frontmatter.
 
+## Adding a research item
+
+Research items are curated links to external resources (papers, projects, frameworks, docs, talks). Add a markdown file:
+
+```
+priv/research/<site-slug>/<YEAR>/<MM>-<DD>-<slug>.md
+```
+
+Frontmatter requires `title`, `url`, `source`, `published`, and `type`:
+
+```markdown
+%{
+  title: "Example Paper",
+  url: "https://example.com/paper",
+  source: "arXiv",
+  published: "January 2025",
+  type: "paper"
+}
+---
+- A bullet summarizing why this resource matters to the site's thesis
+```
+
+Valid types: `docs`, `framework`, `paper`, `post`, `project`, `protocol`, `talk`. The `/research` page displays filter pills for each type present on the current site.
+
 ## How NimblePublisher works
 
 Posts are compiled into the application at build time, not read from disk at runtime. This means:
