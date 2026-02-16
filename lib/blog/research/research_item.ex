@@ -1,4 +1,4 @@
-defmodule Blog.Feed.FeedItem do
+defmodule Blog.Research.ResearchItem do
   @enforce_keys [:id, :site, :title, :url, :source, :body, :date, :published, :tags]
   defstruct [:id, :site, :title, :url, :source, :body, :date, :published, :tags]
 

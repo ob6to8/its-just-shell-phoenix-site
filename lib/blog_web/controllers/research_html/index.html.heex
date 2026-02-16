@@ -1,11 +1,11 @@
 <div class="space-y-8">
-  <h1 class="text-3xl font-bold font-mono text-[var(--text)]">feed</h1>
+  <h1 class="text-3xl font-bold font-mono text-[var(--text)]">research</h1>
 
-  <%= if Enum.empty?(@feed_items) do %>
-    <p class="text-[var(--text-secondary)]">No feed items yet.</p>
+  <%= if Enum.empty?(@research_items) do %>
+    <p class="text-[var(--text-secondary)]">No research items yet.</p>
   <% else %>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <%= for item <- @feed_items do %>
+      <%= for item <- @research_items do %>
         <article class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 flex flex-col gap-3">
           <h2 class="font-mono text-base font-semibold leading-snug">
             <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-[var(--text)] hover:text-[var(--accent)] transition-colors">
