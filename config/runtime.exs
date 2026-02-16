@@ -48,6 +48,18 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
+    check_origin: [
+      "https://itsjustshell.dev",
+      "https://www.itsjustshell.dev",
+      "https://itsjustbeam.dev",
+      "https://www.itsjustbeam.dev",
+      "https://itsjustsound.dev",
+      "https://www.itsjustsound.dev",
+      "https://itsjustshell.com",
+      "https://www.itsjustshell.com",
+      "https://itsjustbeam.com",
+      "https://www.itsjustbeam.com"
+    ],
     secret_key_base: secret_key_base
 
   # ## SSL Support

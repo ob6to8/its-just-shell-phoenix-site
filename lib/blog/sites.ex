@@ -10,7 +10,7 @@ defmodule Blog.Sites do
       slug: "its-just-shell",
       name: "its-just-shell",
       title_suffix: " - its just shell",
-      domains: ["itsjustshell.com", "www.itsjustshell.com"],
+      domains: ["itsjustshell.dev", "www.itsjustshell.dev"],
       theme: %{
         bg: "#282a36",
         text: "#d4d4d8",
@@ -31,7 +31,7 @@ defmodule Blog.Sites do
       slug: "its-just-beam",
       name: "its-just-beam",
       title_suffix: " - its just beam",
-      domains: ["itsjustbeam.com", "www.itsjustbeam.com"],
+      domains: ["itsjustbeam.dev", "www.itsjustbeam.dev"],
       theme: %{
         bg: "#f0ead6",
         text: "#1b2a4a",
@@ -52,7 +52,7 @@ defmodule Blog.Sites do
       slug: "its-just-sound",
       name: "its-just-sound",
       title_suffix: " - its just sound",
-      domains: ["itsjustsound.com", "www.itsjustsound.com"],
+      domains: ["itsjustsound.dev", "www.itsjustsound.dev"],
       theme: %{
         bg: "#0f0f1a",
         text: "#d4d4e0",
