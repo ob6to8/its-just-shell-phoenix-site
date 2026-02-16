@@ -22,6 +22,7 @@ defmodule BlogWeb.Router do
     get "/about", PageController, :about
     get "/posts", PostController, :index
     get "/posts/:id", PostController, :show
+    get "/feed", FeedController, :index
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

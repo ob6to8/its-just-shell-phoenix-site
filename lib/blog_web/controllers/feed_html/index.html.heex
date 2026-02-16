@@ -1,0 +1,25 @@
+<div class="space-y-8">
+  <h1 class="text-3xl font-bold font-mono text-[var(--text)]">feed</h1>
+
+  <%= if Enum.empty?(@feed_items) do %>
+    <p class="text-[var(--text-secondary)]">No feed items yet.</p>
+  <% else %>
+    <div class="space-y-6">
+      <%= for item <- @feed_items do %>
+        <article class="border-b border-[var(--border)] pb-6">
+          <h2 class="font-mono text-xl font-semibold">
+            <a href={item.url} target="_blank" rel="noopener noreferrer" class="text-[var(--text)] hover:text-[var(--accent)] transition-colors">
+              <%= item.title %> <span class="text-sm text-[var(--text-secondary)]">&#8599;</span>
+            </a>
+          </h2>
+          <p class="mt-1 text-sm font-mono text-[var(--text-secondary)]">
+            <%= item.source %> &middot; <%= format_date(item.date) %>
+          </p>
+          <div class="mt-2 text-[var(--text-secondary)] prose prose-invert prose-terminal prose-sm max-w-none">
+            <%= raw(item.body) %>
+          </div>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
+</div>
