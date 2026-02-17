@@ -51,11 +51,23 @@ Path: `priv/research/<site-slug>/<YEAR>/<MM>-<DD>-<slug>.md`
 Struct fields: `id`, `site`, `title`, `url`, `source`, `body`, `date`, `published`, `type`
 
 Frontmatter: `title`, `url`, `source`, `published`, `type`.
-Valid types: `docs`, `framework`, `paper`, `post`, `project`, `protocol`, `talk`.
+Valid types: `docs`, `framework`, `paper`, `post`, `project`, `protocol`, `site`, `talk`.
 
 Research items are curated external links. The body is bullet points explaining why the resource matters to the site's thesis. The `type` field is the only taxonomy — `tags` was deliberately removed to keep classification simple.
 
-The `/research` page shows filter pills for each type. Filtering is via `?type=<type>` query param.
+The `/research` page groups items by month (date added, from filename) with dividers, and shows filter pills for each type. Filtering is via `?type=<type>` query param. New items should use today's date in the filename so they sort to the top.
+
+Items with `type: "site"` are for featuring full websites. They behave differently from other types: hidden from the default "all" card grid, and when the "site" pill is clicked, they render as a compact vertical list (title + one-line blurb) instead of cards. The body should be a single short sentence, not bullet points.
+
+#### Editorial Guidance — Research Placement
+
+The same resource can appear on multiple sites. What determines placement is whether you can write bullets that tie it back to *that site's thesis* without forcing the connection.
+
+- **its-just-shell**: Does this resource illustrate that the pattern is a tool loop? Bullets should connect to composability, read-eval-print cycles, Unix primitives. AI/agent research belongs here when the point is that agents are just shell — tool loops, not a new paradigm.
+- **its-just-beam**: Does this resource illustrate something about the runtime, process model, or fault tolerance? Bullets should connect to OTP, supervision, concurrency, the BEAM.
+- **its-just-sound**: Does this resource illustrate sonification, audio as an interface, or music as computation? Bullets should connect to listening as an observability channel.
+
+The test: can you write three bullets that naturally tie the resource to the site's thesis? If the bullets feel forced, it doesn't belong on that site.
 
 ## Key Modules
 
