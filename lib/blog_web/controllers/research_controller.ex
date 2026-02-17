@@ -13,7 +13,12 @@ defmodule BlogWeb.ResearchController do
         do: Enum.filter(all_items, &(&1.type == type_filter)),
         else: all_items
 
+    grouped =
+      items
+      |> Enum.group_by(&Calendar.strftime(&1.date, "%B %Y"))
+      |> Enum.sort_by(fn {_label, [first | _]} -> first.date end, {:desc, Date})
+
     types = Research.list_types(site_slug)
-    render(conn, :index, research_items: items, types: types, current_type: type_filter)
+    render(conn, :index, grouped_items: grouped, types: types, current_type: type_filter)
   end
 end
