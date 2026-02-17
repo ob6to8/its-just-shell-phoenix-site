@@ -77,7 +77,7 @@ Frontmatter requires `title`, `url`, `source`, `published`, and `type`:
 - A bullet summarizing why this resource matters to the site's thesis
 ```
 
-Valid types: `docs`, `framework`, `paper`, `post`, `project`, `protocol`, `talk`. The `/research` page displays filter pills for each type present on the current site.
+Valid types: `docs`, `framework`, `paper`, `post`, `project`, `protocol`, `site`, `talk`. The `/research` page displays filter pills for each type present on the current site. Items with type `site` are shown as a compact row of links above the card grid instead of as cards.
 
 ## How NimblePublisher works
 

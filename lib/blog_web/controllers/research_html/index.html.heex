@@ -28,6 +28,17 @@
     </div>
   </div>
 
+  <%= if @sites != [] do %>
+    <div class="flex items-center gap-3 text-xs font-mono">
+      <span class="text-[var(--text-secondary)]">sites</span>
+      <%= for site <- @sites do %>
+        <a href={site.url} target="_blank" rel="noopener noreferrer" class="text-[var(--accent)] hover:text-[var(--text)] transition-colors">
+          <%= site.source %> <span class="text-[var(--text-secondary)]">&#8599;</span>
+        </a>
+      <% end %>
+    </div>
+  <% end %>
+
   <%= if Enum.empty?(@grouped_items) do %>
     <p class="text-[var(--text-secondary)]">No research items yet.</p>
   <% else %>
