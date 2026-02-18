@@ -69,6 +69,21 @@ The same resource can appear on multiple sites. What determines placement is whe
 
 The test: can you write three bullets that naturally tie the resource to the site's thesis? If the bullets feel forced, it doesn't belong on that site.
 
+#### Research Curation Process
+
+When searching for new research items to add:
+
+1. **Batch size**: 6 items per site per batch.
+2. **Deduplicate**: Check existing items in `priv/research/<site-slug>/` before searching. Never add a resource that's already featured.
+3. **Search strategy**: Use each site's thesis as the search lens:
+   - *its-just-shell*: tool loops, Unix composability, filesystem-as-state, agent architectures that reduce to shell, trust gradients, script-driven vs LLM-driven control
+   - *its-just-beam*: OTP supervision, process isolation, actor model for agents, distributed coordination, fault tolerance, BEAM ecosystem AI tooling
+   - *its-just-sound*: data sonification, auditory displays, sound for monitoring/observability, audio as interface, music-as-computation
+4. **Three-bullet test**: Every candidate must pass — can you write 3 bullets that naturally tie it to the site's thesis? If forced, skip it.
+5. **Type diversity**: Aim for a mix of types (post, paper, project, talk, framework, docs) within each batch. Don't load up on one type.
+6. **Filename**: Use today's date — `<MM>-<DD>-<slug>.md` — so new items sort to the top.
+7. **Verify URLs**: All URLs must be real and reachable. Prefer primary sources over summaries.
+
 ## Key Modules
 
 - `Blog.Sites` — site definitions, lookup by host/slug
