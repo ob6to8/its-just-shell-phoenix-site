@@ -16,7 +16,7 @@ defmodule BlogWeb.ResearchController do
 
     grouped =
       items
-      |> Enum.group_by(&Calendar.strftime(&1.date, "%B %Y"))
+      |> Enum.group_by(&Calendar.strftime(&1.date, "%B %d, %Y"))
       |> Enum.sort_by(fn {_label, [first | _]} -> first.date end, {:desc, Date})
 
     types = Research.list_types(site_slug)
