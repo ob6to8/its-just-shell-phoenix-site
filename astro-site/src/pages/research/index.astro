@@ -1,0 +1,245 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCurrentSite } from "../../config/sites";
+import { parseMeta, formatDate } from "../../lib/content";
+
+const site = getCurrentSite();
+const allItems = await getCollection("research");
+const siteItems = allItems.filter(
+  (item) => parseMeta(item.id).site === site.slug
+);
+
+// Get unique types for filter pills
+const types = [...new Set(siteItems.map((item) => item.data.type))].sort();
+
+// Group all items by date (descending), including site types
+type RenderedItem = {
+  entry: (typeof siteItems)[number];
+  meta: ReturnType<typeof parseMeta>;
+};
+
+const items: RenderedItem[] = siteItems
+  .map((entry) => ({ entry, meta: parseMeta(entry.id) }))
+  .sort((a, b) => b.meta.date.getTime() - a.meta.date.getTime());
+
+// Group by date label
+type GroupEntry = {
+  label: string;
+  date: Date;
+  items: RenderedItem[];
+};
+
+const groupMap = new Map<string, GroupEntry>();
+const grouped: GroupEntry[] = [];
+
+for (const item of items) {
+  const label = formatDate(item.meta.date);
+  if (!groupMap.has(label)) {
+    const entry: GroupEntry = { label, date: item.meta.date, items: [] };
+    groupMap.set(label, entry);
+    grouped.push(entry);
+  }
+  groupMap.get(label)!.items.push(item);
+}
+
+grouped.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const proseClass = site.isDark
+  ? "prose prose-invert prose-terminal"
+  : "prose prose-terminal";
+---
+
+<BaseLayout title="research">
+  <div class="space-y-8">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-3xl font-bold font-mono text-[var(--text)]">research</h1>
+
+      <div class="flex flex-wrap gap-2 mt-4" id="filter-pills">
+        <a
+          href="/research"
+          data-filter=""
+          class="pill px-3 py-1 rounded-full text-xs font-mono border transition-colors"
+        >
+          all
+        </a>
+        {
+          types.map((type) => (
+            <a
+              href={`/research?type=${type}`}
+              data-filter={type}
+              class="pill px-3 py-1 rounded-full text-xs font-mono border transition-colors"
+            >
+              {type}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Card grid (non-site items) -->
+    <div id="card-view">
+      {
+        grouped.map((group) => (
+          <div class="date-group" data-date={group.label}>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-xs font-mono text-[var(--text-secondary)] whitespace-nowrap">
+                {group.label}
+              </span>
+              <hr class="flex-1 border-[var(--border)]" />
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {group.items.map(async (item) => {
+                const { Content } = await item.entry.render();
+                return (
+                  <article
+                    class="research-item rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 flex flex-col gap-3"
+                    data-type={item.entry.data.type}
+                  >
+                    <h2 class="font-mono text-base font-semibold leading-snug">
+                      <a
+                        href={item.entry.data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                      >
+                        {item.entry.data.title}{" "}
+                        <span class="text-xs text-[var(--text-secondary)]">
+                          &#8599;
+                        </span>
+                      </a>
+                    </h2>
+                    <span class="inline-block self-start px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider text-[var(--accent)] border border-[var(--accent)]/30 bg-[var(--accent)]/10">
+                      {item.entry.data.type}
+                    </span>
+                    <p class="text-xs font-mono text-[var(--text-secondary)]">
+                      {item.entry.data.source} &middot;{" "}
+                      {item.entry.data.published}
+                    </p>
+                    <div
+                      class:list={[
+                        "text-sm text-[var(--text-secondary)]",
+                        proseClass,
+                        "prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-4 [&_ul]:space-y-1 [&_li]:text-sm",
+                      ]}
+                    >
+                      <Content />
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Site list view (compact, shown only when type=site) -->
+    <div id="site-view" class="space-y-2 hidden">
+      {
+        items
+          .filter((item) => item.entry.data.type === "site")
+          .map((item) => (
+            <div class="flex items-baseline gap-2 text-sm font-mono">
+              <a
+                href={item.entry.data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[var(--text)] hover:text-[var(--accent)] transition-colors whitespace-nowrap"
+              >
+                {item.entry.data.title}{" "}
+                <span class="text-xs text-[var(--text-secondary)]">
+                  &#8599;
+                </span>
+              </a>
+              <span class="text-[var(--text-secondary)] text-xs truncate">
+                {item.entry.body.replace(/^[-*]\s*/, "").trim()}
+              </span>
+            </div>
+          ))
+      }
+    </div>
+
+    <p id="empty-msg" class="text-[var(--text-secondary)] hidden">
+      No research items yet.
+    </p>
+  </div>
+</BaseLayout>
+
+<script>
+  function applyFilter() {
+    const params = new URLSearchParams(window.location.search);
+    const typeFilter = params.get("type");
+
+    // Update pill active states
+    const pills = document.querySelectorAll<HTMLElement>("#filter-pills .pill");
+    pills.forEach((pill) => {
+      const filter = pill.getAttribute("data-filter");
+      const isActive =
+        (typeFilter === null && filter === "") ||
+        typeFilter === filter;
+      if (isActive) {
+        pill.className =
+          "pill px-3 py-1 rounded-full text-xs font-mono border transition-colors bg-[var(--accent)] text-[var(--bg)] border-[var(--accent)]";
+      } else {
+        pill.className =
+          "pill px-3 py-1 rounded-full text-xs font-mono border transition-colors text-[var(--text-secondary)] border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)]";
+      }
+    });
+
+    const cardView = document.getElementById("card-view")!;
+    const siteView = document.getElementById("site-view")!;
+    const emptyMsg = document.getElementById("empty-msg")!;
+
+    // Site type: show compact list
+    if (typeFilter === "site") {
+      cardView.classList.add("hidden");
+      siteView.classList.remove("hidden");
+      emptyMsg.classList.add("hidden");
+      return;
+    }
+
+    // All other types: show card grid
+    siteView.classList.add("hidden");
+    cardView.classList.remove("hidden");
+
+    let visibleCount = 0;
+    const dateGroups =
+      document.querySelectorAll<HTMLElement>("#card-view .date-group");
+    dateGroups.forEach((group) => {
+      const items = group.querySelectorAll<HTMLElement>(".research-item");
+      let groupVisible = 0;
+      items.forEach((item) => {
+        const itemType = item.getAttribute("data-type");
+        const show =
+          typeFilter === null
+            ? itemType !== "site" // "all" hides site type
+            : itemType === typeFilter;
+        item.style.display = show ? "" : "none";
+        if (show) groupVisible++;
+      });
+      group.style.display = groupVisible > 0 ? "" : "none";
+      visibleCount += groupVisible;
+    });
+
+    emptyMsg.classList.toggle("hidden", visibleCount > 0);
+  }
+
+  // Handle pill clicks without full page reload
+  document.querySelectorAll<HTMLElement>("#filter-pills .pill").forEach((pill) => {
+    pill.addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = pill.getAttribute("href");
+      if (href) {
+        history.pushState(null, "", href);
+        applyFilter();
+      }
+    });
+  });
+
+  // Handle browser back/forward
+  window.addEventListener("popstate", applyFilter);
+
+  // Initial filter on page load
+  applyFilter();
+</script>

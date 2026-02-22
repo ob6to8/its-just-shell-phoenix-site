@@ -1,0 +1,37 @@
+---
+interface Props {
+  types: string[];
+  currentType: string | null;
+}
+
+const { types, currentType } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-2 mt-4">
+  <a
+    href="/research"
+    class:list={[
+      "px-3 py-1 rounded-full text-xs font-mono border transition-colors",
+      currentType === null
+        ? "bg-[var(--accent)] text-[var(--bg)] border-[var(--accent)]"
+        : "text-[var(--text-secondary)] border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)]",
+    ]}
+  >
+    all
+  </a>
+  {
+    types.map((type) => (
+      <a
+        href={`/research?type=${type}`}
+        class:list={[
+          "px-3 py-1 rounded-full text-xs font-mono border transition-colors",
+          currentType === type
+            ? "bg-[var(--accent)] text-[var(--bg)] border-[var(--accent)]"
+            : "text-[var(--text-secondary)] border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)]",
+        ]}
+      >
+        {type}
+      </a>
+    ))
+  }
+</div>

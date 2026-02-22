@@ -1,0 +1,41 @@
+---
+import { getCurrentSite, themeStyle } from "../config/sites";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+
+const site = getCurrentSite();
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+const pageTitle = title ? `${title}${site.titleSuffix}` : site.name;
+---
+
+<!doctype html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/png" href={site.logoPath} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-[var(--bg)] text-[var(--text)] antialiased font-sans"
+    style={themeStyle(site.theme)}
+  >
+    <Header />
+    <main class="px-4 py-20 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

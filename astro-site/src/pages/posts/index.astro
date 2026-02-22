@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostListItem from "../../components/PostListItem.astro";
+import { getCurrentSite } from "../../config/sites";
+import { parseMeta } from "../../lib/content";
+
+const site = getCurrentSite();
+const allPosts = await getCollection("posts");
+const posts = allPosts
+  .filter((p) => parseMeta(p.id).site === site.slug)
+  .sort(
+    (a, b) =>
+      parseMeta(b.id).date.getTime() - parseMeta(a.id).date.getTime()
+  );
+---
+
+<BaseLayout title="posts">
+  <div class="max-w-2xl mx-auto space-y-8">
+    <h1 class="text-3xl font-bold font-mono text-[var(--text)]">posts</h1>
+
+    {
+      posts.length === 0 ? (
+        <p class="text-[var(--text-secondary)]">No posts yet.</p>
+      ) : (
+        <div class="space-y-6">
+          {posts.map((post) => {
+            const meta = parseMeta(post.id);
+            return (
+              <PostListItem
+                slug={meta.slug}
+                title={post.data.title}
+                date={meta.date}
+                description={post.data.description}
+              />
+            );
+          })}
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>

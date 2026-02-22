@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCurrentSite } from "../../config/sites";
+import { parseMeta, formatDate } from "../../lib/content";
+
+export async function getStaticPaths() {
+  const site = getCurrentSite();
+  const allPosts = await getCollection("posts");
+  return allPosts
+    .filter((p) => parseMeta(p.id).site === site.slug)
+    .map((post) => ({
+      params: { slug: parseMeta(post.id).slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const meta = parseMeta(post.id);
+const { Content } = await post.render();
+const site = getCurrentSite();
+const proseClass = site.isDark ? "prose prose-invert prose-terminal" : "prose prose-terminal";
+---
+
+<BaseLayout title={post.data.title}>
+  <article class="max-w-2xl mx-auto space-y-6">
+    <div>
+      <a
+        href="/posts"
+        class="text-sm font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+        >&larr; back to posts</a
+      >
+    </div>
+
+    <header>
+      <h1 class="text-3xl font-bold font-mono text-[var(--text)]">
+        {post.data.title}
+      </h1>
+      <p class="mt-2 text-sm font-mono text-[var(--text-secondary)]">
+        {formatDate(meta.date)}
+      </p>
+    </header>
+
+    <div class:list={[proseClass, "max-w-none"]}>
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

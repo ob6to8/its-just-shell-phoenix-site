@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  type: string;
+  source: string;
+  published: string;
+  body: string;
+}
+
+const { title, url, type, source, published, body } = Astro.props;
+---
+
+<article
+  class="rounded-lg border border-[var(--border)] bg-[var(--surface)] p-5 flex flex-col gap-3"
+>
+  <h2 class="font-mono text-base font-semibold leading-snug">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+    >
+      {title} <span class="text-xs text-[var(--text-secondary)]">&#8599;</span>
+    </a>
+  </h2>
+  <span
+    class="inline-block self-start px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider text-[var(--accent)] border border-[var(--accent)]/30 bg-[var(--accent)]/10"
+  >
+    {type}
+  </span>
+  <p class="text-xs font-mono text-[var(--text-secondary)]">
+    {source} &middot; {published}
+  </p>
+  <div
+    class="text-sm text-[var(--text-secondary)] prose prose-invert prose-terminal prose-sm max-w-none [&_ul]:list-disc [&_ul]:pl-4 [&_ul]:space-y-1 [&_li]:text-sm"
+    set:html={body}
+  />
+</article>

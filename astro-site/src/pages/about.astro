@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCurrentSite } from "../config/sites";
+
+const site = getCurrentSite();
+const proseClass = site.isDark ? "prose prose-invert prose-terminal" : "prose prose-terminal";
+---
+
+<BaseLayout title="about">
+  <div class="max-w-2xl mx-auto space-y-8">
+    <h1 class="text-3xl font-bold font-mono text-[var(--text)]">about</h1>
+
+    <div class:list={[proseClass, "max-w-none"]}>
+      <p>{site.aboutText}</p>
+    </div>
+
+    <div class="flex items-center gap-6 font-mono text-sm">
+      <a
+        href="https://github.com/Its-Just-Shell"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+      >
+        github
+      </a>
+      <a
+        href="https://x.com/itsjustshelldev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+      >
+        x.com
+      </a>
+    </div>
+  </div>
+</BaseLayout>
